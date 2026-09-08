@@ -138,6 +138,35 @@ input:focus{outline:none;border-color:var(--sage-soft);background:#fff}
 .banner.ok{background:var(--sage-wash);border:1px solid #CBD5C4;color:var(--ink)}
 .banner.warn{background:var(--rose-wash);border:1px solid #E3CFC7;color:#7E4A44}
 
+
+/* ---- Schritt für Schritt ---- */
+.sq-steps{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.sq-dot{width:11px;height:11px;padding:0;border-radius:50%;background:var(--cream-dim);border:1px solid var(--line);cursor:pointer;transition:transform .15s}
+.sq-dot.on{background:var(--sage-soft);border-color:transparent}
+.sq-dot.now{outline:2px solid var(--ink);outline-offset:2px;transform:scale(1.15)}
+.sq-dot:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
+.sq-eyebrow{text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--sage);margin:0 0 12px;min-height:14px}
+.sq-q{font-family:var(--serif);font-size:clamp(23px,3.8vw,30px);line-height:1.32;color:var(--ink);text-align:center;margin:0 auto 26px;max-width:24ch;min-height:2.4em;display:flex;align-items:center;justify-content:center;text-wrap:balance}
+.sq-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.sq-choice{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;min-width:130px;padding:17px 22px;border-radius:2px;background:transparent;color:var(--ink-soft);border:1px solid var(--line);transition:border-color .15s,background .15s,color .15s,transform .1s}
+.sq-choice:hover{border-color:var(--quiet)}
+.sq-choice:active{transform:scale(.97)}
+.sq-choice:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.sq-choice.aktiv{background:var(--sage);border-color:var(--sage);color:#fff}
+.sq-ta{width:100%;font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--ink-soft);background:var(--cream);border:1px solid var(--line);border-radius:2px;padding:14px 16px;resize:vertical;min-height:140px}
+.sq-ta:focus{outline:none;border-color:var(--sage-soft);background:#fff}
+.sq-nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.sq-nav-btn{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;padding:11px 22px;border-radius:2px;background:transparent;color:var(--sage);border:1px solid var(--line)}
+.sq-nav-btn:hover{border-color:var(--sage-soft)}
+.sq-nav-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.sq-nav-btn.stark{background:var(--sage);border-color:var(--sage);color:#fff}
+.sq-nav-btn.stark:hover{filter:brightness(1.08)}
+.sq-prog{font-size:13px;color:var(--quiet);margin-left:auto}
+.sq-eyebrow[hidden],.sq-q[hidden],.sq-btns[hidden],.sq-ta[hidden],.sq-nav-btn[hidden]{display:none!important}
+.sq-done p{font-size:15.5px}
+.sq-done .fertig{font-family:var(--serif);font-size:24px;color:var(--ink);margin:0 0 10px}
+@media(max-width:520px){.sq-choice{min-width:0;flex:1 1 46%;padding:16px 10px;letter-spacing:.08em}}
+
 /* ---- Check ---- */
 .q{display:grid;grid-template-columns:1fr auto;gap:9px 22px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
 .q:last-of-type{border-bottom:0}
@@ -312,14 +341,9 @@ footer .flinks a:hover{border-bottom-color:var(--sage-soft)}
 <section id="check">
   <p class="eyebrow">Schritt 2</p>
   <h2>Dein Selbstcheck</h2>
-  <p class="sec-intro">Achtzehn Sätze, drei pro Blockade, bewusst gemischt. Antworte aus dem Bauch und denk maximal drei Sekunden nach. Es geht darum, wie oft das bei dir vorkommt, nicht ob es grundsätzlich stimmt. Der Farbpunkt vorne zeigt dir, zu welcher Blockade der Satz gehört.</p>
+  <p class="sec-intro">Achtzehn Sätze, drei pro Blockade, bewusst gemischt. Antworte aus dem Bauch und denk maximal drei Sekunden nach. Es geht darum, wie oft das bei dir vorkommt, nicht ob es grundsätzlich stimmt. Über jedem Satz steht, zu welcher Blockade er gehört. Die Punktleiste oben zeigt dir, wie weit du bist, und du kannst jeden Punkt antippen, um zurückzuspringen.</p>
   <div class="card">
     <div id="questions"></div>
-    <div class="actions">
-      <button class="btn" id="calc">Auswerten</button>
-      <button class="btn ghost" id="reset">Neu beginnen</button>
-      <span class="progress" id="progress"></span>
-    </div>
   </div>
 </section>
 
@@ -364,15 +388,15 @@ footer .flinks a:hover{border-bottom-color:var(--sage-soft)}
   <p class="sec-intro">Du wirkst über Einladung, nicht über Anlauf. Der Unterschied entscheidet, ob dich etwas trägt oder auslaugt. Häkchen setzen, wenn der Satz auf deine Situation zutrifft.</p>
   <div class="card">
     <div id="invite"></div>
-    <p class="note" style="margin-top:17px">Vier oder mehr Häkchen, geh rein. Zwei oder drei, warte noch eine Runde ab. Weniger, dann ist es dein Anlauf und nicht ihre Einladung.</p>
   </div>
+  <p class="note" style="margin-top:17px;max-width:58ch">Vier oder mehr Häkchen, geh rein. Zwei oder drei, warte noch eine Runde ab. Weniger, dann ist es dein Anlauf und nicht ihre Einladung.</p>
 </section>
 
 <section>
   <p class="eyebrow">Roter Faden</p>
   <h2>Sechs Fragen für deine Ausrichtung</h2>
   <p class="sec-intro">Nicht in einem Rutsch beantworten. Nimm dir eine Frage pro Tag. Was du schreibst, bleibt in deinem Browser und wird nirgendwo hingeschickt.</p>
-  <div class="card"><div class="thread" id="thread"></div></div>
+  <div class="card"><div id="thread"></div></div>
 </section>
 
 <section>
@@ -1582,6 +1606,146 @@ function field(label, text, cls){
   return f;
 }
 
+/* ============ SCHRITT FÜR SCHRITT ============
+   Eine Frage nach der anderen, mit Punktleiste und Zurück.
+   mode "choice" springt nach dem Klick weiter, mode "text" über Weiter. */
+function makeStepper(cfg){
+  var host = cfg.host;
+  if(!host) return null;
+  host.innerHTML = "";
+  var n = cfg.items.length;
+  var idx = 0;
+
+  var steps = document.createElement("div");
+  steps.className = "sq-steps";
+  steps.setAttribute("aria-hidden","true");
+  var dots = [];
+  for(var i=0;i<n;i++){
+    (function(k){
+      var d = document.createElement("button");
+      d.type = "button";
+      d.className = "sq-dot";
+      d.title = "Frage " + (k+1);
+      d.addEventListener("click", function(){ idx = k; show(); });
+      steps.appendChild(d); dots.push(d);
+    })(i);
+  }
+
+  var eyebrow = document.createElement("p");
+  eyebrow.className = "sq-eyebrow";
+  var q = document.createElement("p");
+  q.className = "sq-q";
+
+  var btns = document.createElement("div");
+  btns.className = "sq-btns";
+  var ta = document.createElement("textarea");
+  ta.className = "sq-ta";
+  ta.placeholder = cfg.placeholder || "";
+
+  var nav = document.createElement("div");
+  nav.className = "sq-nav";
+  var back = document.createElement("button");
+  back.type = "button"; back.className = "sq-nav-btn"; back.textContent = "Zurück";
+  var fwd = document.createElement("button");
+  fwd.type = "button"; fwd.className = "sq-nav-btn stark"; fwd.textContent = "Weiter";
+  var prog = document.createElement("span");
+  prog.className = "sq-prog";
+  nav.appendChild(back); nav.appendChild(fwd); nav.appendChild(prog);
+
+  var done = document.createElement("div");
+  done.className = "sq-done";
+  done.hidden = true;
+
+  host.appendChild(steps); host.appendChild(eyebrow); host.appendChild(q);
+  if(cfg.mode === "text") host.appendChild(ta); else host.appendChild(btns);
+  host.appendChild(nav); host.appendChild(done);
+
+  var choiceBtns = [];
+  if(cfg.mode !== "text"){
+    cfg.choices.forEach(function(c){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "sq-choice";
+      b.textContent = c.l;
+      b.addEventListener("click", function(){
+        cfg.set(idx, c.v);
+        paint();
+        if(idx < n - 1){ idx++; show(); } else { idx = n; show(); }
+      });
+      btns.appendChild(b); choiceBtns.push(b);
+    });
+  }
+
+  var timer;
+  ta.addEventListener("input", function(){
+    cfg.set(idx, ta.value);
+    clearTimeout(timer);
+    timer = setTimeout(paint, 400);
+  });
+
+  back.addEventListener("click", function(){ if(idx > 0){ idx--; show(); } });
+  fwd.addEventListener("click", function(){ if(idx < n){ idx++; show(); } });
+
+  function anzahl(){
+    var c = 0;
+    for(var i=0;i<n;i++){ var v = cfg.get(i); if(v !== undefined && v !== null && v !== "") c++; }
+    return c;
+  }
+
+  function paint(){
+    dots.forEach(function(d,i){
+      var v = cfg.get(i);
+      d.className = "sq-dot" + ((v !== undefined && v !== null && v !== "") ? " on" : "") + (i === idx ? " now" : "");
+      if(cfg.items[i].color && v !== undefined && v !== null && v !== "") d.style.background = cfg.items[i].color;
+      else d.style.background = "";
+    });
+  }
+
+  function show(){
+    paint();
+    var fertig = idx >= n;
+    eyebrow.hidden = fertig; q.hidden = fertig;
+    btns.hidden = fertig || cfg.mode === "text";
+    ta.hidden = fertig || cfg.mode !== "text";
+    fwd.hidden = fertig;
+    back.hidden = idx === 0;
+    done.hidden = !fertig;
+
+    if(fertig){
+      prog.textContent = anzahl() + " von " + n + " beantwortet";
+      done.innerHTML = "";
+      if(cfg.onDone) cfg.onDone(done, anzahl());
+      return;
+    }
+    var it = cfg.items[idx];
+    eyebrow.textContent = it.eyebrow || "";
+    if(it.color) eyebrow.style.color = it.color; else eyebrow.style.color = "";
+    q.textContent = it.text;
+    prog.textContent = (idx + 1) + " von " + n;
+
+    var v = cfg.get(idx);
+    if(cfg.mode === "text"){
+      ta.value = (v === undefined || v === null) ? "" : v;
+    }else{
+      choiceBtns.forEach(function(b,i){
+        var an = (v !== undefined && v === cfg.choices[i].v);
+        b.setAttribute("aria-pressed", an ? "true" : "false");
+        b.classList.toggle("aktiv", an);
+        if(an && it.color){ b.style.background = it.color; b.style.borderColor = it.color; }
+        else { b.style.background = ""; b.style.borderColor = ""; }
+      });
+    }
+  }
+
+  show();
+  return {
+    zeigeErste:function(){ idx = 0; show(); },
+    zeigeEnde:function(){ idx = n; show(); },
+    neu:function(){ idx = 0; show(); },
+    aktualisieren:show
+  };
+}
+
 /* ---- Wissen ---- */
 var kEl = document.getElementById("knowledge");
 KNOWLEDGE.forEach(function(k,i){
@@ -2047,57 +2211,48 @@ document.getElementById("calcChart").addEventListener("click", function(){
   }
 });
 
-/* ============ CHECK ============ */
-var qWrap = document.getElementById("questions");
-QUESTIONS.forEach(function(q,i){
-  var blk = BLOCKS[q.b-1];
-  var row = document.createElement("div");
-  row.className = "q";
-  var txt = document.createElement("div");
-  txt.className = "q-text";
-  var dot = document.createElement("span");
-  dot.className = "q-dot";
-  dot.style.background = blk.color;
-  dot.title = blk.title;
-  txt.appendChild(dot);
-  txt.appendChild(document.createTextNode(q.t));
-  var sc = document.createElement("div");
-  sc.className = "scale";
-  sc.setAttribute("role","group");
-  sc.setAttribute("aria-label", q.t);
-  SCALE.forEach(function(s){
-    var b = document.createElement("button");
-    b.type = "button";
-    b.textContent = s.l;
-    b.setAttribute("aria-pressed","false");
-    b.addEventListener("click", function(){
-      answers[i] = s.v;
-      Array.prototype.forEach.call(sc.children, function(c){ c.setAttribute("aria-pressed","false"); });
-      b.setAttribute("aria-pressed","true");
-      save({answers:answers});
-      updateProgress();
+/* ============ CHECK, eine Frage nach der anderen ============ */
+var checkStep = makeStepper({
+  host: document.getElementById("questions"),
+  mode: "choice",
+  choices: SCALE,
+  items: QUESTIONS.map(function(q){
+    var b = BLOCKS[q.b - 1];
+    return {eyebrow:"Blockade " + b.n + ", " + b.title, text:q.t, color:b.color};
+  }),
+  get: function(i){ return answers[i]; },
+  set: function(i,v){ answers[i] = v; save({answers:answers}); },
+  onDone: function(box, anzahl){
+    var h = document.createElement("p");
+    h.className = "fertig";
+    h.textContent = anzahl === QUESTIONS.length ? "Alle achtzehn beantwortet" : "Du hast " + anzahl + " von " + QUESTIONS.length + " beantwortet";
+    var p = document.createElement("p");
+    p.textContent = anzahl === QUESTIONS.length
+      ? "Jetzt schauen wir uns an, welche Blockade bei dir gerade am stärksten zieht."
+      : "Du kannst schon auswerten. Genauer wird es, wenn du die übrigen noch beantwortest, tipp dafür oben auf einen offenen Punkt.";
+    var row = document.createElement("div");
+    row.className = "actions";
+    var b1 = document.createElement("button");
+    b1.className = "btn"; b1.type = "button"; b1.textContent = "Auswerten";
+    b1.addEventListener("click", function(){
+      var r = evaluate();
+      if(!r) return;
+      render(r);
+      document.getElementById("result").scrollIntoView({behavior:"smooth", block:"start"});
     });
-    sc.appendChild(b);
-  });
-  row.appendChild(txt); row.appendChild(sc);
-  qWrap.appendChild(row);
+    var b2 = document.createElement("button");
+    b2.className = "btn ghost"; b2.type = "button"; b2.textContent = "Neu beginnen";
+    b2.addEventListener("click", function(){
+      answers = {};
+      save({answers:{}});
+      document.getElementById("result").hidden = true;
+      checkStep.neu();
+      document.getElementById("check").scrollIntoView({behavior:"smooth", block:"start"});
+    });
+    row.appendChild(b1); row.appendChild(b2);
+    box.appendChild(h); box.appendChild(p); box.appendChild(row);
+  }
 });
-
-function updateProgress(){
-  var n = Object.keys(answers).length;
-  document.getElementById("progress").textContent =
-    n === QUESTIONS.length ? "Alle 18 beantwortet" : n + " von " + QUESTIONS.length + " beantwortet";
-}
-
-(function restore(){
-  var rows = qWrap.querySelectorAll(".scale");
-  Object.keys(answers).forEach(function(i){
-    var sc = rows[i]; if(!sc) return;
-    var idx = SCALE.map(function(s){return s.v;}).indexOf(answers[i]);
-    if(idx > -1) sc.children[idx].setAttribute("aria-pressed","true");
-  });
-  updateProgress();
-})();
 
 /* ============ AUSWERTUNG ============ */
 function evaluate(){
@@ -2196,22 +2351,6 @@ function render(r){
 
 function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
-document.getElementById("calc").addEventListener("click", function(){
-  var r = evaluate();
-  if(!r){ document.getElementById("progress").textContent = "Beantworte zuerst mindestens einen Satz."; return; }
-  render(r);
-  document.getElementById("result").scrollIntoView({behavior:"smooth", block:"start"});
-});
-
-document.getElementById("reset").addEventListener("click", function(){
-  answers = {};
-  save({answers:{}});
-  Array.prototype.forEach.call(qWrap.querySelectorAll(".scale button"), function(b){ b.setAttribute("aria-pressed","false"); });
-  document.getElementById("result").hidden = true;
-  updateProgress();
-  document.getElementById("check").scrollIntoView({behavior:"smooth", block:"start"});
-});
-
 /* ============ ÜBUNGEN ============ */
 (function(){
   var host = document.getElementById("exPanel");
@@ -2269,44 +2408,49 @@ document.getElementById("reset").addEventListener("click", function(){
   });
 })();
 
-/* ============ EINLADUNG ============ */
-var invEl = document.getElementById("invite");
+var INVITE_TEXT = function(ja){ return ja >= 4 ? "Geh rein. Das ist eine echte Einladung und sie trägt dich."
+      : (ja >= 2 ? "Warte noch eine Runde ab. Es ist noch nicht klar genug, und du merkst es meistens innerhalb weniger Tage."
+      : "Das ist dein Anlauf und nicht ihre Einladung. Wenn du hier reingehst, kostet es dich mehr, als es dir gibt."); };
+
+/* ============ JA NEIN CHECK ============ */
 var invState = stored.invite || {};
-INVITE.forEach(function(txt,i){
-  var l = document.createElement("label"); l.className = "chk";
-  var cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = !!invState[i];
-  cb.addEventListener("change", function(){ invState[i] = cb.checked; save({invite:invState}); });
-  var sp = document.createElement("span"); sp.textContent = txt;
-  l.appendChild(cb); l.appendChild(sp);
-  invEl.appendChild(l);
+var JANEIN = [{v:1,l:"Ja"},{v:0,l:"Nein"}];
+makeStepper({
+  host: document.getElementById("invite"),
+  mode: "choice",
+  choices: JANEIN,
+  items: INVITE.map(function(t){ return {eyebrow:"", text:t}; }),
+  get: function(i){ return invState[i]; },
+  set: function(i,v){ invState[i] = v; save({invite:invState}); },
+  onDone: function(box){
+    var ja = 0;
+    INVITE.forEach(function(_,i){ if(invState[i] === 1) ja++; });
+    var h = document.createElement("p");
+    h.className = "fertig";
+    h.textContent = ja + " von " + INVITE.length + " mal ja";
+    var p = document.createElement("p");
+    p.textContent = INVITE_TEXT(ja);
+    box.appendChild(h); box.appendChild(p);
+  }
 });
 
 /* ============ ROTER FADEN ============ */
-var thEl = document.getElementById("thread");
 var thState = stored.thread || {};
-THREAD.forEach(function(q,i){
-  var w = document.createElement("div");
-  var qq = document.createElement("p"); qq.className = "qq"; qq.textContent = q;
-  var ta = document.createElement("textarea");
-  ta.value = thState[i] || "";
-  ta.setAttribute("aria-label", q);
-  ta.placeholder = "Schreib roh, so wie es rauskommt.";
-  var mark = document.createElement("span"); mark.className = "saved"; mark.textContent = "gespeichert";
-  var timer;
-  ta.addEventListener("input", function(){
-    thState[i] = ta.value;
-    clearTimeout(timer);
-    timer = setTimeout(function(){
-      save({thread:thState});
-      mark.classList.add("on");
-      setTimeout(function(){ mark.classList.remove("on"); }, 1400);
-    }, 500);
-  });
-  var foot = document.createElement("div");
-  foot.style.cssText = "display:flex;justify-content:flex-end;min-height:18px;margin-top:5px";
-  foot.appendChild(mark);
-  w.appendChild(qq); w.appendChild(ta); w.appendChild(foot);
-  thEl.appendChild(w);
+makeStepper({
+  host: document.getElementById("thread"),
+  mode: "text",
+  placeholder: "Schreib roh, so wie es rauskommt.",
+  items: THREAD.map(function(q,i){ return {eyebrow:"Frage " + (i+1) + " von " + THREAD.length, text:q}; }),
+  get: function(i){ return thState[i]; },
+  set: function(i,v){ thState[i] = v; save({thread:thState}); },
+  onDone: function(box, anzahl){
+    var h = document.createElement("p");
+    h.className = "fertig";
+    h.textContent = anzahl + " von " + THREAD.length + " beantwortet";
+    var p = document.createElement("p");
+    p.textContent = "Alles bleibt gespeichert. Du kannst jederzeit zurückgehen und weiterschreiben, tipp dafür oben auf einen Punkt.";
+    box.appendChild(h); box.appendChild(p);
+  }
 });
 
 /* ============ START ============ */
@@ -2318,10 +2462,7 @@ if(stored.birth){
   document.getElementById("fName").value = stored.birth.name || "";
 }
 var r0 = evaluate();
-if(r0 && r0.count === QUESTIONS.length) render(r0);
-
-})();
-</script>
+if(r0 && r0.count === QUESTIONS.length){ render(r0); checkStep.zeigeEnde(); }
 
 })();
 </script>
